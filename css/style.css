@@ -408,6 +408,77 @@ button:disabled {
   #REUSED STYLE
 \*-----------------------------------*/
 
+.material-symbols-outlined {
+  display: block;
+  width: 1em;
+  height: 1em;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+:has(> .state-layer) {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.ripple,
+.state-layer {
+  background-color: var(--state-layer-bg);
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.state-layer {
+  border-radius: inherit;
+  inset: 0;
+  opacity: 0;
+  transition: var(--motion-duration-short-2) var(--motion-easing-linear);
+}
+
+:has(> .state-layer):hover>.state-layer {
+  opacity: 0.08;
+}
+
+:has(> .state-layer):is(:focus, :focus-visible, :active)>.state-layer {
+  opacity: 0.12;
+}
+
+.ripple {
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  transform-origin: center;
+  border-radius: var(--radius-circle);
+  opacity: 0.12;
+  animation: ripple 800ms var(--motion-easing-standard) forwards;
+}
+
+@keyframes ripple {
+  0% {
+    scale: 0;
+  }
+
+  100% {
+    scale: 2.5;
+  }
+}
+
+.logo {
+  color: var(--primary);
+  font-size: 2.6rem;
+  font-weight: var(--weight-medium);
+  line-height: 28px;
+  letter-spacing: -0.5px;
+}
+
+.divider {
+  height: 1px;
+  max-width: 100%;
+  background-color: var(--outline-variant);
+}
+
+
 
 
 
@@ -416,54 +487,64 @@ button:disabled {
   #COMPONENT
 \*-----------------------------------*/
 
-/**
- * Icon button
- */
+/* -- Icon button -- */
+.icon-btn {
+  color: var(--on-surface-variant);
+  --state-layer-bg: var(--on-surface-variant);
+  min-width: 48px;
+  width: 38px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-circle);
+}
+
+.icon-btn>.state-layer {
+  inset: 4px;
+}
+
+.icon-btn>.ripple {
+  width: 40px;
+  height: 40px;
+  animation: icon-button-ripple 200ms var(--motion-easing-standard) forwards;
+}
+
+@keyframes icon-button-ripple {
+  0% {
+    scale: 0;
+  }
+
+  100% {
+    scale: 1;
+  }
+}
 
 
-/**
- * Segment button
- */
+/* -- Segment button -- */
 
 
-/**
- * Split btn
- */
+/* -- Split btn -- */
 
 
-/**
- * Search view
- */
+/* -- Search view -- */
 
 
-/**
- * List
- */
+/* -- List -- */
 
 
-/**
- * Navigation
- */
+/* -- Navigation -- */
 
 
-/**
- * Button
- */
+/* -- Button -- */
 
 
-/**
- * Card
- */
+/* -- Card -- */
 
 
-/**
- * Menu
- */
+/* -- Menu -- */
 
 
-/**
- * Filter chip
- */
+/* -- Filter chip -- */
 
 
 
@@ -472,10 +553,6 @@ button:disabled {
 /*-----------------------------------*\
   #TOP APP BAR
 \*-----------------------------------*/
-
-.search-view {
-  display: none;
-}
 
 .top-app-bar {
   background-color: var(--surface);
@@ -492,6 +569,19 @@ button:disabled {
 
 .top-app-bar.active {
   background-color: var(--surface-container);
+}
+
+.top-app-bar .logo {
+  margin-inline: 4px auto;
+}
+
+[data-theme="dark"] .theme-btn .dark-icon,
+[data-theme="light"] .theme-btn .light-icon {
+  display: none;
+}
+
+.search-view-content .divider {
+  margin-inline: 16px;
 }
 
 
